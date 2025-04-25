@@ -636,19 +636,19 @@
             
             // Handle navigation button clicks
             document.getElementById('navGetStarted').addEventListener('click', function() {
-                navigateTo('/signup');
-            });
-            
-            document.getElementById('heroGetStarted').addEventListener('click', function() {
-                navigateTo('/signup');
-            });
-            
-            document.getElementById('learnMore').addEventListener('click', function() {
                 handleNavigation('#features');
             });
             
+            document.getElementById('heroGetStarted').addEventListener('click', function() {
+                handleNavigation('#features');
+            });
+            
+            document.getElementById('learnMore').addEventListener('click', function() {
+                navigateTo('/contact');
+            });
+            
             document.getElementById('ctaSignUp').addEventListener('click', function() {
-                navigateTo('/signup');
+                navigateTo('/contact');
             });
             
             document.getElementById('ctaContact').addEventListener('click', function() {
