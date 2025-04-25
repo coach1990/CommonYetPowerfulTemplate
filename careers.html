@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Horizon</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            line-height: 1.6;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4361ee;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        .cta-button {
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a56d4;
+        }
+        
+        /* Hero section */
+        .hero {
+            background-color: #4361ee;
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        /* Why join us section */
+        .why-join-section {
+            padding: 5rem 2rem;
+            background-color: #ffffff;
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #212529;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.25rem;
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #4361ee;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #212529;
+        }
+        
+        .benefit-card p {
+            color: #6c757d;
+        }
+        
+        /* Culture section */
+        .culture-section {
+            padding: 5rem 2rem;
+            background-color: #f8f9fa;
+        }
+        
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .culture-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 250px;
+        }
+        
+        .culture-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Open positions section */
+        .positions-section {
+            padding: 5rem 2rem;
+            background-color: #ffffff;
+        }
+        
+        .departments-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .department-tab {
+            padding: 0.75rem 1.5rem;
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .department-tab:hover {
+            background-color: #e9ecef;
+        }
+        
+        .department-tab.active {
+            background-color: #4361ee;
+            color: white;
+            border-color: #4361ee;
+        }
+        
+        .positions-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .position-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .position-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .position-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .position-title h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #212529;
+        }
+        
+        .position-meta {
+            display: flex;
+            gap: 1rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .position-tag {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .position-tag.remote {
+            background-color: #d8f3dc;
+            color: #2d6a4f;
+        }
+        
+        .position-description {
+            margin-bottom: 1.5rem;
+            color: #495057;
+        }
+        
+        .position-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .position-button:hover {
+            background-color: #3a56d4;
+        }
+        
+        /* Testimonials section */
+        .testimonials-section {
+            padding: 5rem 2rem;
+            background-color: #f8f9fa;
+        }
+        
+        .testimonial-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 0 auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .testimonial-text {
+            font-size: 1.25rem;
+            color: #495057;
+            margin-bottom: 2rem;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 3rem;
+            color: #e9ecef;
+            position: absolute;
+        }
+        
+        .testimonial-text::before {
+            top: -20px;
+            left: -10px;
+        }
+        
+        .testimonial-text::after {
+            bottom: -40px;
+            right: -10px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4361ee;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            color: #212529;
+            margin-bottom: 0.25rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        /* CTA section */
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background-color: #4361ee;
+            color: white;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .white-button {
+            background-color: white;
+            color: #4361ee;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .white-button:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+        
+        .outline-white-button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .outline-white-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #212529;
+            color: #f8f9fa;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .footer-about p {
+            color: #adb5bd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: #adb5bd;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: #adb5bd;
+            padding-top: 3rem;
+            border-top: 1px solid #343a40;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .position-header {
+                flex-direction: column;
+            }
+            
+            .position-tag {
+                margin-top: 0.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" id="logo">Horizon</div>
+            <div class="nav-links">
+                <a href="#" id="nav-features">Features</a>
+                <a href="#" id="nav-pricing">Pricing</a>
+                <a href="#" id="nav-integrations">Integrations</a>
+                <a href="#" id="nav-contact">Contact</a>
+            </div>
+            <button class="cta-button" id="navGetStarted">Get Started</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-container">
+            <h1>Join Our Team</h1>
+            <p>We're looking for passionate individuals to help us build the future of work. Explore opportunities to grow your career with us.</p>
+        </div>
+    </section>
+
+    <section class="why-join-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Why Join Horizon?</h2>
+                <p>We offer more than just a job. Join us and be part of a mission to transform how teams work together.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌱</div>
+                    <h3>Growth & Development</h3>
+                    <p>We invest in your professional growth with learning stipends, mentorship programs, and career development opportunities.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌍</div>
+                    <h3>Remote-First Culture</h3>
+                    <p>Work from anywhere in the world. We believe in hiring the best talent regardless of location.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">💪</div>
+                    <h3>Health & Wellness</h3>
+                    <p>Comprehensive health benefits, wellness programs, and mental health support to keep you at your best.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚖️</div>
+                    <h3>Work-Life Balance</h3>
+                    <p>Flexible working hours, unlimited PTO, and regular company-wide breaks to prevent burnout.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">💡</div>
+                    <h3>Innovation & Impact</h3>
+                    <p>Work on challenging problems and see the direct impact of your contributions on thousands of users.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>Inclusive Community</h3>
+                    <p>Join a diverse team that values different perspectives and fosters a sense of belonging for everyone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="culture-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Our Culture</h2>
+                <p>At Horizon, we're building more than a product—we're creating a community where everyone can thrive.</p>
+            </div>
+            
+            <div class="culture-grid">
+                <div class="culture-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Team collaboration">
+                </div>
+                
+                <div class="culture-image">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Team meeting">
+                </div>
+                
+                <div class="culture-image">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Office space">
+                </div>
+                
+                <div class="culture-image">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Team event">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="positions-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Open Positions</h2>
+                <p>Find your perfect role and join us in building the future of work</p>
+            </div>
+            
+            <div class="departments-tabs">
+                <div class="department-tab active" data-department="all">All Departments</div>
+                <div class="department-tab" data-department="engineering">Engineering</div>
+                <div class="department-tab" data-department="product">Product</div>
+                <div class="department-tab" data-department="design">Design</div>
+                <div class="department-tab" data-department="marketing">Marketing</div>
+                <div class="department-tab" data-department="customer">Customer Success</div>
+            </div>
+            
+            <div class="positions-list" id="positions-container">
+                <div class="position-card" data-department="engineering">
+                    <div class="position-header">
+                        <div class="position-title">
+                            <h3>Senior Frontend Engineer</h3>
+                            <div class="position-meta">
+                                <span>Full-time</span>
+                                <span>•</span>
+                                <span>Engineering</span>
+                            </div>
+                        </div>
+                        <div class="position-tag remote">Remote</div>
+                    </div>
+                    <div class="position-description">
+                        <p>We're looking for a Senior Frontend Engineer to help build and improve our user interfaces. You'll work closely with our product and design teams to create intuitive and performant experiences.</p>
+                    </div>
+                    <button class="position-button" data-position="senior-frontend-engineer">View Details</button>
+                </div>
+                
+                <div class="position-card" data-department="engineering">
+                    <div class="position-header">
+                        <div class="position-title">
+                            <h3>Backend Engineer</h3>
+                            <div class="position-meta">
+                                <span>Full-time</span>
+                                <span>•</span>
+                                <span>Engineering</span>
+                            </div>
+                        </div>
+                        <div class="position-tag remote">Remote</div>
+                    </div>
+                    <div class="position-description">
+                        <p>Join our backend team to build scalable and reliable systems that power our platform. You'll work on API development, database design, and performance optimization.</p>
+                    </div>
+                    <button class="position-button" data-position="backend-engineer">View Details</button>
+                </div>
+                
+                <div class="position-card" data-department="product">
+                    <div class="position-header">
+                        <div class="position-title">
+                            <h3>Product Manager</h3>
+                            <div class="position-meta">
+                                <span>Full-time</span>
+                                <span>•</span>
+                                <span>Product</span>
+                            </div>
+                        </div>
+                        <div class="position-tag">New York / Remote</div>
+                    </div>
+                    <div class="position-description">
+                        <p>We're seeking a Product Manager to help define and execute our product strategy. You'll work with cross-functional teams to deliver features that delight our users and drive business growth.</p>
+                    </div>
+                    <button class="position-button" data-position="product-manager">View Details</button>
+                </div>
+                
+                <div class="position-card" data-department="design">
+                    <div class="position-header">
+                        <div class="position-title">
+                            <h3>UX/UI Designer</h3>
+                            <div class="position-meta">
+                                <span>Full-time</span>
+                                <span>•</span>
+                                <span>Design</span>
+                            </div>
+                        </div>
+                        <div class="position-tag remote">Remote</div>
+                    </div>
+                    <div class="position-description">
+                        <p>Join our design team to create beautiful and functional user experiences. You'll collaborate with product and engineering to bring designs from concept to implementation.</p>
+                    </div>
+                    <button class="position-button" data-position="ux-ui-designer">View Details</button>
+                </div>
+                
+                <div class="position-card" data-department="marketing">
+                    <div class="position-header">
+                        <div class="position-title">
+                            <h3>Content Marketing Specialist</h3>
+                            <div class="position-meta">
+                                <span>Full-time</span>
+                                <span>•</span>
+                                <span>Marketing</span>
+                            </div>
+                        </div>
+                        <div class="position-tag">San Francisco / Remote</div>
+                    </div>
+                    <div class="position-description">
+                        <p>We're looking for a Content Marketing Specialist to create compelling content that educates and engages our audience. You'll develop blog posts, case studies, and other materials to support our marketing efforts.</p>
+                    </div>
+                    <button class="position-button" data-position="content-marketing-specialist">View Details</button>
+                </div>
+                
+                <div class="position-card" data-department="customer">
+                    <div class="position-header">
+                        <div class="position-title">
+                            <h3>Customer Success Manager</h3>
+                            <div class="position-meta">
+                                <span>Full-time</span>
+                                <span>•</span>
+                                <span>Customer Success</span>
+                            </div>
+                        </div>
+                        <div class="position-tag">London / Remote</div>
+                    </div>
+                    <div class="position-description">
+                        <p>Join our customer success team to help our clients get the most value from our platform. You'll build relationships with key accounts and ensure their success with our product.</p>
+                    </div>
+                    <button class="position-button" data-position="customer-success-manager">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Life at Horizon</h2>
+                <p>Hear from our team members about their experiences</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">Working at Horizon has been the most rewarding experience of my career. The culture of innovation, support, and work-life balance is unmatched. I've grown more in my two years here than in my previous five years combined.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">M</div>
+                    <div class="author-info">
+                        <h4>Maria Rodriguez</h4>
+                        <p>Senior Product Designer, 2 years at Horizon</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Don't see the right role?</h2>
+            <p>We're always looking for talented individuals to join our team. Send us your resume and we'll keep you in mind for future opportunities.</p>
+            <div class="cta-buttons">
+                <button class="white-button" id="ctaApply">Submit Your Resume</button>
+                <button class="outline-white-button" id="ctaContact">Contact Recruiting</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo" id="footer-logo">Horizon</div>
+                <p>Empowering businesses with innovative solutions to streamline workflows and boost productivity.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="LinkedIn">🔗</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Product</h3>
+                <ul>
+                    <li><a id="footer-features">Features</a></li>
+                    <li><a id="footer-pricing">Pricing</a></li>
+                    <li><a id="footer-integrations">Integrations</a></li>
+                    <li><a id="footer-updates">Updates</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a id="footer-about">About Us</a></li>
+                    <li><a id="footer-careers">Careers</a></li>
+                    <li><a id="footer-blog">Blog</a></li>
+                    <li><a id="footer-contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a id="footer-documentation">Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Horizon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Job Details Modal -->
+    <div id="jobModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; overflow-y: auto;">
+        <div style="background-color: white; margin: 5% auto; padding: 2rem; width: 90%; max-width: 800px; border-radius: 8px; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button id="closeModal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
+            
+            <div id="jobDetails">
+                <!-- Job details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Job details data
+        const jobDetails = {
+            'senior-frontend-engineer': {
+                title: 'Senior Frontend Engineer',
+                department: 'Engineering',
+                location: 'Remote',
+                type: 'Full-time',
+                description: `<p>We're looking for a Senior Frontend Engineer to join our team and help build the future of collaboration tools. You'll work on creating intuitive, responsive, and performant user interfaces that delight our users.</p>
+                <p>As a Senior Frontend Engineer, you'll collaborate closely with our product and design teams to implement new features and improve existing ones. You'll have the opportunity to influence our technical direction and contribute to our engineering culture.</p>`,
+                responsibilities: [
+                    'Design, build, and maintain efficient, reusable, and reliable frontend code',
+                    'Collaborate with cross-functional teams to define, design, and ship new features',
+                    'Identify and address performance bottlenecks and browser compatibility issues',
+                    'Participate in code reviews and mentor junior engineers',
+                    'Stay up-to-date with emerging trends and technologies in frontend development'
+                ],
+                requirements: [
+                    '5+ years of experience in frontend development',
+                    'Strong proficiency in JavaScript, HTML, and CSS',
+                    'Experience with modern frontend frameworks (React, Vue, or Angular)',
+                    'Understanding of responsive design and cross-browser compatibility',
+                    'Knowledge of frontend build tools and workflows',
+                    'Experience with state management patterns and libraries',
+                    'Excellent problem-solving skills and attention to detail',
+                    'Strong communication and collaboration abilities'
+                ],
+                preferred: [
+                    'Experience with TypeScript',
+                    'Knowledge of testing frameworks (Jest, React Testing Library)',
+                    'Experience with GraphQL',
+                    'Contributions to open source projects',
+                    'Experience working in a remote environment'
+                ]
+            },
+            'backend-engineer': {
+                title: 'Backend Engineer',
+                department: 'Engineering',
+                location: 'Remote',
+                type: 'Full-time',
+                description: `<p>We're seeking a Backend Engineer to help build and scale our platform. You'll work on designing and implementing APIs, services, and database schemas that power our application.</p>
+                <p>As a Backend Engineer, you'll be responsible for the server-side logic, ensuring high performance and responsiveness to requests from the frontend. You'll also work on integrating with third-party services and maintaining data integrity.</p>`,
+                responsibilities: [
+                    'Design and implement scalable backend services and APIs',
+                    'Write clean, maintainable, and efficient code',
+                    'Optimize application performance and scalability',
+                    'Implement security and data protection measures',
+                    'Collaborate with frontend engineers to integrate user-facing elements',
+                    'Troubleshoot and debug issues in production environments',
+                    'Participate in code reviews and contribute to technical documentation'
+                ],
+                requirements: [
+                    '3+ years of experience in backend development',
+                    'Proficiency in at least one backend language (Node.js, Python, Ruby, Go, etc.)',
+                    'Experience with RESTful APIs and microservices architecture',
+                    'Knowledge of database technologies (SQL and NoSQL)',
+                    'Understanding of server-side templating languages',
+                    'Familiarity with version control systems (Git)',
+                    'Problem-solving aptitude with attention to detail',
+                    'Good communication skills and ability to work in a team'
+                ],
+                preferred: [
+                    'Experience with cloud platforms (AWS, GCP, or Azure)',
+                    'Knowledge of containerization (Docker, Kubernetes)',
+                    'Experience with CI/CD pipelines',
+                    'Understanding of security best practices',
+                    'Experience with real-time communication protocols'
+                ]
+            },
+            'product-manager': {
+                title: 'Product Manager',
+                department: 'Product',
+                location: 'New York / Remote',
+                type: 'Full-time',
+                description: `<p>We're looking for a Product Manager to help define and execute our product strategy. You'll work with cross-functional teams to deliver features that delight our users and drive business growth.</p>
+                <p>As a Product Manager, you'll be the voice of the customer within the company, ensuring that we're building the right products and features to meet their needs. You'll collaborate with engineering, design, marketing, and sales to bring products from concept to launch.</p>`,
+                responsibilities: [
+                    'Define product vision, strategy, and roadmap based on market research and user feedback',
+                    'Gather and prioritize product requirements',
+                    'Work closely with engineering and design teams to deliver features',
+                    'Define success metrics and analyze product performance',
+                    'Conduct user research and usability testing',
+                    'Create and maintain product documentation',
+                    'Communicate product plans and updates to stakeholders'
+                ],
+                requirements: [
+                    '3+ years of experience in product management',
+                    'Strong analytical and problem-solving skills',
+                    'Excellent communication and presentation abilities',
+                    'Experience working with cross-functional teams',
+                    'Understanding of software development processes',
+                    'Data-driven decision-making approach',
+                    'Ability to prioritize competing demands',
+                    'User-centered mindset'
+                ],
+                preferred: [
+                    'Experience with collaboration or productivity tools',
+                    'Technical background or understanding of software development',
+                    'Experience with agile methodologies',
+                    'Background in UX design or user research',
+                    'MBA or relevant advanced degree'
+                ]
+            },
+            'ux-ui-designer': {
+                title: 'UX/UI Designer',
+                department: 'Design',
+                location: 'Remote',
+                type: 'Full-time',
+                description: `<p>We're looking for a UX/UI Designer to create beautiful and functional user experiences. You'll collaborate with product and engineering teams to bring designs from concept to implementation.</p>
+                <p>As a UX/UI Designer, you'll be responsible for the user experience of our product, ensuring that it's intuitive, accessible, and visually appealing. You'll conduct user research, create wireframes and prototypes, and design polished interfaces.</p>`,
+                responsibilities: [
+                    'Create user flows, wireframes, prototypes, and high-fidelity designs',
+                    'Conduct user research and usability testing',
+                    'Collaborate with product managers to understand requirements',
+                    'Work with engineers to implement designs',
+                    'Maintain and evolve our design system',
+                    'Stay up-to-date with design trends and best practices',
+                    'Advocate for the user throughout the product development process'
+                ],
+                requirements: [
+                    '3+ years of experience in UX/UI design',
+                    'Strong portfolio demonstrating your design process and skills',
+                    'Proficiency in design tools (Figma, Sketch, Adobe XD)',
+                    'Understanding of user-centered design principles',
+                    'Experience with responsive design',
+                    'Ability to translate user needs into design solutions',
+                    'Strong communication and presentation skills',
+                    'Collaborative mindset'
+                ],
+                preferred: [
+                    'Experience designing for SaaS or productivity tools',
+                    'Knowledge of HTML, CSS, and basic front-end development',
+                    'Experience with animation and interaction design',
+                    'Background in user research or usability testing',
+                    'Experience with design systems'
+                ]
+            },
+            'content-marketing-specialist': {
+                title: 'Content Marketing Specialist',
+                department: 'Marketing',
+                location: 'San Francisco / Remote',
+                type: 'Full-time',
+                description: `<p>We're seeking a Content Marketing Specialist to create compelling content that educates and engages our audience. You'll develop blog posts, case studies, and other materials to support our marketing efforts.</p>
+                <p>As a Content Marketing Specialist, you'll be responsible for creating and managing content across various channels to drive awareness, engagement, and conversions. You'll work closely with the marketing team to align content with our overall strategy.</p>`,
+                responsibilities: [
+                    'Create high-quality content for our blog, website, and social media',
+                    'Develop case studies, white papers, and other long-form content',
+                    'Collaborate with product and design teams on content strategy',
+                    'Manage content calendar and publishing schedule',
+                    'Optimize content for SEO and conversion',
+                    'Analyze content performance and make data-driven improvements',
+                    'Stay up-to-date with industry trends and competitor content'
+                ],
+                requirements: [
+                    '2+ years of experience in content marketing or related field',
+                    'Excellent writing and editing skills',
+                    'Understanding of SEO principles',
+                    'Experience with content management systems',
+                    'Ability to translate complex topics into clear, engaging content',
+                    'Strong attention to detail',
+                    'Good project management skills',
+                    'Portfolio of published work'
+                ],
+                preferred: [
+                    'Experience in B2B SaaS marketing',
+                    'Knowledge of marketing automation tools',
+                    'Experience with video content creation',
+                    'Background in journalism or communications',
+                    'Familiarity with analytics tools'
+                ]
+            },
+            'customer-success-manager': {
+                title: 'Customer Success Manager',
+                department: 'Customer Success',
+                location: 'London / Remote',
+                type: 'Full-time',
+                description: `<p>We're looking for a Customer Success Manager to help our clients get the most value from our platform. You'll build relationships with key accounts and ensure their success with our product.</p>
+                <p>As a Customer Success Manager, you'll be the primary point of contact for our customers, helping them achieve their goals using our platform. You'll work to increase adoption, ensure retention, and identify opportunities for expansion.</p>`,
+                responsibilities: [
+                    'Develop and maintain strong relationships with assigned customers',
+                    'Ensure successful onboarding and implementation of our platform',
+                    'Provide product training and best practices guidance',
+                    'Monitor customer health and proactively address issues',
+                    'Identify upsell and cross-sell opportunities',
+                    'Collaborate with product team to share customer feedback',
+                    'Track and report on customer success metrics'
+                ],
+                requirements: [
+                    '3+ years of experience in customer success, account management, or similar role',
+                    'Strong interpersonal and communication skills',
+                    'Problem-solving ability and proactive mindset',
+                    'Experience with CRM systems and customer success tools',
+                    'Ability to understand customer needs and translate them into solutions',
+                    'Data-driven approach to measuring success',
+                    'Excellent presentation and demonstration skills',
+                    'Ability to manage multiple accounts simultaneously'
+                ],
+                preferred: [
+                    'Experience with SaaS or productivity tools',
+                    'Background in project management or consulting',
+                    'Knowledge of change management principles',
+                    'Experience working with enterprise customers',
+                    'Technical aptitude and ability to learn new software quickly'
+                ]
+            }
+        };
+
+        // Department tabs functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const departmentTabs = document.querySelectorAll('.department-tab');
+            const positionCards = document.querySelectorAll('.position-card');
+            const jobModal = document.getElementById('jobModal');
+            const jobDetails = document.getElementById('jobDetails');
+            const closeModal = document.getElementById('closeModal');
+            
+            departmentTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    departmentTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Get selected department
+                    const department = this.getAttribute('data-department');
+                    
+                    // Show/hide position cards based on department
+                    positionCards.forEach(card => {
+                        if (department === 'all' || card.getAttribute('data-department') === department) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Position button click handlers
+            const positionButtons = document.querySelectorAll('.position-button');
+            positionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const position = this.getAttribute('data-position');
+                    showJobDetails(position);
+                });
+            });
+            
+            // Close modal when clicking the close button
+            closeModal.addEventListener('click', function() {
+                jobModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            });
+            
+            // Close modal when clicking outside the content
+            jobModal.addEventListener('click', function(e) {
+                if (e.target === jobModal) {
+                    jobModal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Re-enable scrolling
+                }
+            });
+            
+            // Function to show job details in modal
+            function showJobDetails(position) {
+                const job = window.jobDetails[position];
+                if (!job) return;
+                
+                // Create responsibilities list
+                const responsibilitiesList = job.responsibilities.map(item => `<li>${item}</li>`).join('');
+                
+                // Create requirements list
+                const requirementsList = job.requirements.map(item => `<li>${item}</li>`).join('');
+                
+                // Create preferred qualifications list
+                const preferredList = job.preferred.map(item => `<li>${item}</li>`).join('');
+                
+                // Build the HTML for the job details
+                const html = `
+                    <div style="border-bottom: 1px solid #e9ecef; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                        <h2 style="font-size: 2rem; margin-bottom: 0.5rem; color: #212529;">${job.title}</h2>
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                            <span style="color: #6c757d;">${job.department}</span>
+                            <span style="color: #6c757d;">•</span>
+                            <span style="color: #6c757d;">${job.location}</span>
+                            <span style="color: #6c757d;">•</span>
+                            <span style="color: #6c757d;">${job.type}</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #212529;">Overview</h3>
+                        ${job.description}
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #212529;">Responsibilities</h3>
+                        <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem;">
+                            ${responsibilitiesList}
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #212529;">Requirements</h3>
+                        <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem;">
+                            ${requirementsList}
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #212529;">Nice to Have</h3>
+                        <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem;">
+                            ${preferredList}
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <button id="applyNowButton" style="background-color: #4361ee; color: white; border: none; padding: 0.75rem 2rem; border-radius: 4px; font-weight: 600; cursor: pointer; transition: background-color 0.3s ease;">Apply Now</button>
+                    </div>
+                `;
+                
+                // Set the HTML content
+                jobDetails.innerHTML = html;
+                
+                // Show the modal
+                jobModal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+                
+                // Add event listener to the Apply Now button
+                document.getElementById('applyNowButton').addEventListener('click', function() {
+                    navigateTo('/careers/apply', { position: job.title });
+                    jobModal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Re-enable scrolling
+                });
+            }
+            
+            // CTA button handlers
+            document.getElementById('ctaApply').addEventListener('click', function() {
+                navigateTo('/careers/apply');
+            });
+            
+            document.getElementById('ctaContact').addEventListener('click', function() {
+                navigateTo('/contact', { subject: 'Recruiting Inquiry' });
+            });
+        });
+        
+        // Navigation handling
+        function navigateTo(page, params) {
+            console.log(`Navigating to: ${page}`);
+            if (params) {
+                console.log('With params:', params);
+            }
+            // In a real implementation, this would navigate to the page
+        }
+        
+        // Logo navigation
+        document.getElementById('logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        document.getElementById('footer-logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        // Nav links
+        document.getElementById('nav-features').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/features');
+        });
+        
+        document.getElementById('nav-pricing').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('nav-integrations').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('nav-contact').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/contact');
+        });
+        
+        // CTA button
+        document.getElementById('navGetStarted').addEventListener('click', function() {
+            navigateTo('/signup');
+        });
+        
+        // Footer links
+        document.getElementById('footer-features').addEventListener('click', function() {
+            navigateTo('/features');
+        });
+        
+        document.getElementById('footer-pricing').addEventListener('click', function() {
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('footer-integrations').addEventListener('click', function() {
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('footer-updates').addEventListener('click', function() {
+            navigateTo('/updates');
+        });
+        
+        document.getElementById('footer-about').addEventListener('click', function() {
+            navigateTo('/about');
+        });
+        
+        document.getElementById('footer-careers').addEventListener('click', function() {
+            navigateTo('/careers');
+        });
+        
+        document.getElementById('footer-blog').addEventListener('click', function() {
+            navigateTo('/blog');
+        });
+        
+        document.getElementById('footer-contact').addEventListener('click', function() {
+            navigateTo('/contact');
+        });
+        
+        document.getElementById('footer-documentation').addEventListener('click', function() {
+            navigateTo('/documentation');
+        });
+    </script>
+</body>
+</html>

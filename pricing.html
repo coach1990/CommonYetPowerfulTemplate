@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Horizon</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            line-height: 1.6;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4361ee;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        .cta-button {
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a56d4;
+        }
+        
+        /* Page header */
+        .page-header {
+            background-color: #4361ee;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Pricing section */
+        .pricing-section {
+            padding: 5rem 2rem;
+        }
+        
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .toggle-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #495057;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            margin: 0 1rem;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e9ecef;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #4361ee;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background-color: #4361ee;
+            color: white;
+            padding: 0.5rem 3rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            color: #212529;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price span {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #6c757d;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+            color: #495057;
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-button {
+            display: inline-block;
+            width: 100%;
+            padding: 0.75rem 0;
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .pricing-button:hover {
+            background-color: #3a56d4;
+        }
+        
+        .pricing-button.outline {
+            background-color: transparent;
+            color: #4361ee;
+            border: 1px solid #4361ee;
+        }
+        
+        .pricing-button.outline:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        /* FAQ section */
+        .faq-section {
+            padding: 5rem 2rem;
+            background-color: #ffffff;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #212529;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #6c757d;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #212529;
+        }
+        
+        .faq-question:hover {
+            background-color: #e9ecef;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        /* CTA section */
+        .cta-section {
+            background-color: #4361ee;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .white-button {
+            background-color: white;
+            color: #4361ee;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .white-button:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+        
+        .outline-white-button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .outline-white-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #212529;
+            color: #f8f9fa;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .footer-about p {
+            color: #adb5bd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: #adb5bd;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: #adb5bd;
+            padding-top: 3rem;
+            border-top: 1px solid #343a40;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" id="logo">Horizon</div>
+            <div class="nav-links">
+                <a href="#" id="nav-features">Features</a>
+                <a href="#" id="nav-pricing">Pricing</a>
+                <a href="#" id="nav-integrations">Integrations</a>
+                <a href="#" id="nav-contact">Contact</a>
+            </div>
+            <button class="cta-button" id="navGetStarted">Get Started</button>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Simple, Transparent Pricing</h1>
+        <p>Choose the plan that's right for your business. All plans include a 14-day free trial.</p>
+    </section>
+
+    <section class="pricing-section">
+        <div class="pricing-container">
+            <div class="pricing-toggle">
+                <span class="toggle-label">Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="billingToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Annually <span style="color: #4361ee; font-weight: 600;">Save 20%</span></span>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price" id="starter-price">$29<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>Up to 5 team members</li>
+                        <li>10GB storage</li>
+                        <li>Basic analytics</li>
+                        <li>24/7 email support</li>
+                        <li>2 integrations</li>
+                    </ul>
+                    <button class="pricing-button outline" id="starterButton">Get Started</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="popular-tag">Most Popular</div>
+                    <h3>Professional</h3>
+                    <div class="price" id="pro-price">$79<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>Up to 20 team members</li>
+                        <li>50GB storage</li>
+                        <li>Advanced analytics</li>
+                        <li>24/7 priority support</li>
+                        <li>10 integrations</li>
+                        <li>Custom branding</li>
+                    </ul>
+                    <button class="pricing-button" id="proButton">Get Started</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price" id="enterprise-price">$199<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>Unlimited team members</li>
+                        <li>500GB storage</li>
+                        <li>Premium analytics</li>
+                        <li>24/7 dedicated support</li>
+                        <li>Unlimited integrations</li>
+                        <li>Custom branding</li>
+                        <li>Advanced security</li>
+                        <li>API access</li>
+                    </ul>
+                    <button class="pricing-button" id="enterpriseButton">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our pricing and features</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I change my plan later?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can upgrade or downgrade your plan at any time. Changes to your subscription will be prorated and reflected in your next billing cycle.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What happens after my free trial?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>After your 14-day free trial ends, your account will automatically switch to the plan you selected. We'll send you reminders before the trial ends, and you can cancel anytime before being charged.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer discounts for nonprofits or educational institutions?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we offer special pricing for nonprofits, educational institutions, and startups. Please contact our sales team for more information about our discount programs.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I cancel my subscription at any time?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can cancel your subscription at any time from your account settings. If you cancel, you'll still have access to your plan until the end of your current billing cycle.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What payment methods do you accept?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept all major credit cards (Visa, Mastercard, American Express, Discover) as well as PayPal. For Enterprise plans, we also offer invoicing options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Ready to get started?</h2>
+            <p>Join thousands of businesses that are already growing with our platform</p>
+            <div class="cta-buttons">
+                <button class="white-button" id="ctaSignUp">Sign Up Now</button>
+                <button class="outline-white-button" id="ctaContact">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo" id="footer-logo">Horizon</div>
+                <p>Empowering businesses with innovative solutions to streamline workflows and boost productivity.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="LinkedIn">🔗</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Product</h3>
+                <ul>
+                    <li><a id="footer-features">Features</a></li>
+                    <li><a id="footer-pricing">Pricing</a></li>
+                    <li><a id="footer-integrations">Integrations</a></li>
+                    <li><a id="footer-updates">Updates</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a id="footer-about">About Us</a></li>
+                    <li><a id="footer-careers">Careers</a></li>
+                    <li><a id="footer-blog">Blog</a></li>
+                    <li><a id="footer-contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a id="footer-documentation">Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Horizon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle pricing between monthly and annual
+        const billingToggle = document.getElementById('billingToggle');
+        const starterPrice = document.getElementById('starter-price');
+        const proPrice = document.getElementById('pro-price');
+        const enterprisePrice = document.getElementById('enterprise-price');
+        
+        billingToggle.addEventListener('change', function() {
+            if (this.checked) {
+                // Annual pricing (20% discount)
+                starterPrice.innerHTML = '$279<span>/year</span>';
+                proPrice.innerHTML = '$759<span>/year</span>';
+                enterprisePrice.innerHTML = '$1,899<span>/year</span>';
+            } else {
+                // Monthly pricing
+                starterPrice.innerHTML = '$29<span>/month</span>';
+                proPrice.innerHTML = '$79<span>/month</span>';
+                enterprisePrice.innerHTML = '$199<span>/month</span>';
+            }
+        });
+        
+        // FAQ accordion functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('.toggle-icon');
+                
+                // Toggle active class
+                answer.classList.toggle('active');
+                
+                // Change icon
+                if (answer.classList.contains('active')) {
+                    icon.textContent = '-';
+                } else {
+                    icon.textContent = '+';
+                }
+            });
+        });
+        
+        // Navigation handling
+        function navigateTo(page) {
+            console.log(`Navigating to: ${page}`);
+            // In a real implementation, this would navigate to the page
+        }
+        
+        // Logo navigation
+        document.getElementById('logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        document.getElementById('footer-logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        // Nav links
+        document.getElementById('nav-features').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/features');
+        });
+        
+        document.getElementById('nav-pricing').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('nav-integrations').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('nav-contact').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/contact');
+        });
+        
+        // CTA buttons
+        document.getElementById('navGetStarted').addEventListener('click', function() {
+            navigateTo('/signup');
+        });
+        
+        document.getElementById('starterButton').addEventListener('click', function() {
+            navigateTo('/signup', { plan: 'starter' });
+        });
+        
+        document.getElementById('proButton').addEventListener('click', function() {
+            navigateTo('/signup', { plan: 'professional' });
+        });
+        
+        document.getElementById('enterpriseButton').addEventListener('click', function() {
+            navigateTo('/contact', { subject: 'Enterprise Plan Inquiry' });
+        });
+        
+        document.getElementById('ctaSignUp').addEventListener('click', function() {
+            navigateTo('/signup');
+        });
+        
+        document.getElementById('ctaContact').addEventListener('click', function() {
+            navigateTo('/contact');
+        });
+        
+        // Footer links
+        document.getElementById('footer-features').addEventListener('click', function() {
+            navigateTo('/features');
+        });
+        
+        document.getElementById('footer-pricing').addEventListener('click', function() {
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('footer-integrations').addEventListener('click', function() {
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('footer-updates').addEventListener('click', function() {
+            navigateTo('/updates');
+        });
+        
+        document.getElementById('footer-about').addEventListener('click', function() {
+            navigateTo('/about');
+        });
+        
+        document.getElementById('footer-careers').addEventListener('click', function() {
+            navigateTo('/careers');
+        });
+        
+        document.getElementById('footer-blog').addEventListener('click', function() {
+            navigateTo('/blog');
+        });
+        
+        document.getElementById('footer-contact').addEventListener('click', function() {
+            navigateTo('/contact');
+        });
+        
+        document.getElementById('footer-documentation').addEventListener('click', function() {
+            navigateTo('/documentation');
+        });
+        
+        document.getElementById('footer-help').addEventListener('click', function() {
+            navigateTo('/help');
+        });
+        
+        document.getElementById('footer-community').addEventListener('click', function() {
+            navigateTo('/community');
+        });
+        
+        document.getElementById('footer-webinars').addEventListener('click', function() {
+            navigateTo('/webinars');
+        });
+    </script>
+</body>
+</html>

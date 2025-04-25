@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Horizon</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            line-height: 1.6;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4361ee;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        .cta-button {
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a56d4;
+        }
+        
+        /* Hero section */
+        .hero {
+            background-color: #4361ee;
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        /* Our story section */
+        .story-section {
+            padding: 5rem 2rem;
+        }
+        
+        .story-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .story-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #212529;
+        }
+        
+        .story-content p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Mission and values section */
+        .mission-section {
+            padding: 5rem 2rem;
+            background-color: #ffffff;
+        }
+        
+        .mission-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #212529;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.25rem;
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #4361ee;
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #212529;
+        }
+        
+        .value-card p {
+            color: #6c757d;
+        }
+        
+        /* Team section */
+        .team-section {
+            padding: 5rem 2rem;
+        }
+        
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .team-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-photo {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .team-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #212529;
+        }
+        
+        .team-info p {
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            color: #6c757d;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: #4361ee;
+        }
+        
+        /* Timeline section */
+        .timeline-section {
+            padding: 5rem 2rem;
+            background-color: #ffffff;
+        }
+        
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline {
+            position: relative;
+            margin-top: 4rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: #e9ecef;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-content {
+            position: relative;
+            width: calc(50% - 30px);
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: #f8f9fa;
+            transform: rotate(45deg);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -10px;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            top: 20px;
+            width: 120px;
+            padding: 0.5rem;
+            background-color: #4361ee;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-date {
+            left: -160px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-date {
+            right: -160px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: #4361ee;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #212529;
+        }
+        
+        .timeline-content p {
+            color: #6c757d;
+        }
+        
+        /* Stats section */
+        .stats-section {
+            padding: 5rem 2rem;
+            background-color: #4361ee;
+            color: white;
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* CTA section */
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #212529;
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: #6c757d;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .primary-button {
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .primary-button:hover {
+            background-color: #3a56d4;
+            transform: translateY(-2px);
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: #4361ee;
+            border: 1px solid #4361ee;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #212529;
+            color: #f8f9fa;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .footer-about p {
+            color: #adb5bd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: #adb5bd;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: #adb5bd;
+            padding-top: 3rem;
+            border-top: 1px solid #343a40;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .story-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-image {
+                order: -1;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -10px;
+                right: auto;
+            }
+            
+            .timeline-date {
+                position: relative;
+                top: 0;
+                left: 0 !important;
+                right: 0 !important;
+                margin-bottom: 1rem;
+                width: auto;
+                display: inline-block;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" id="logo">Horizon</div>
+            <div class="nav-links">
+                <a href="#" id="nav-features">Features</a>
+                <a href="#" id="nav-pricing">Pricing</a>
+                <a href="#" id="nav-integrations">Integrations</a>
+                <a href="#" id="nav-contact">Contact</a>
+            </div>
+            <button class="cta-button" id="navGetStarted">Get Started</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-container">
+            <h1>Our Mission is to Empower Teams</h1>
+            <p>We're building the future of work by creating tools that help teams collaborate, communicate, and create with ease.</p>
+        </div>
+    </section>
+
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-content">
+                <h2>Our Story</h2>
+                <p>Horizon began in 2018 when our founders, Alex and Sarah, experienced firsthand the challenges of managing distributed teams across different time zones. They were frustrated by the fragmented tools available and envisioned a unified platform that would make teamwork seamless regardless of location.</p>
+                <p>What started as a simple project management tool has evolved into a comprehensive platform used by thousands of teams worldwide. Our journey has been guided by a simple principle: make collaboration effortless so teams can focus on what matters most—creating amazing work together.</p>
+                <p>Today, Horizon is a team of over 100 passionate individuals spread across 12 countries, all united by the mission to transform how teams work together in the digital age.</p>
+            </div>
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Team collaborating">
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="mission-container">
+            <div class="section-header">
+                <h2>Our Values</h2>
+                <p>These core principles guide everything we do, from product development to customer support</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Collaboration First</h3>
+                    <p>We believe that the best work happens when people work together. Our tools are designed to make collaboration natural and effortless.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🔍</div>
+                    <h3>Transparency</h3>
+                    <p>We're committed to being open and honest in everything we do, from our business practices to our product roadmap.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h3>Continuous Innovation</h3>
+                    <p>We're never satisfied with the status quo. We constantly push boundaries to create better solutions for our customers.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h3>Customer Obsession</h3>
+                    <p>Our customers are at the heart of everything we do. Their success is our success, and their feedback drives our development.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>Global Mindset</h3>
+                    <p>We embrace diversity and build products that work for teams regardless of where they are in the world.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🔒</div>
+                    <h3>Trust & Security</h3>
+                    <p>We take the responsibility of handling our customers' data seriously and make security a top priority.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="team-container">
+            <div class="section-header">
+                <h2>Meet Our Leadership</h2>
+                <p>The passionate individuals guiding our vision and mission</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-photo" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"></div>
+                    <div class="team-info">
+                        <h3>Alex Johnson</h3>
+                        <p>Co-Founder & CEO</p>
+                        <div class="team-social">
+                            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">🔗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-photo" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80');"></div>
+                    <div class="team-info">
+                        <h3>Sarah Chen</h3>
+                        <p>Co-Founder & CTO</p>
+                        <div class="team-social">
+                            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">🔗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-photo" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"></div>
+                    <div class="team-info">
+                        <h3>Michael Rodriguez</h3>
+                        <p>Chief Product Officer</p>
+                        <div class="team-social">
+                            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">🔗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-photo" style="background-image: url('https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80');"></div>
+                    <div class="team-info">
+                        <h3>Emily Taylor</h3>
+                        <p>Chief Marketing Officer</p>
+                        <div class="team-social">
+                            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">🔗</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <div class="section-header">
+                <h2>Our Journey</h2>
+                <p>Key milestones that have shaped our path</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2018</div>
+                        <h3>The Beginning</h3>
+                        <p>Alex and Sarah founded Horizon with a vision to transform team collaboration.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019</div>
+                        <h3>First Major Release</h3>
+                        <p>Launched our core platform with project management and communication tools.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020</div>
+                        <h3>Remote Work Boom</h3>
+                        <p>Expanded our user base 5x as teams worldwide shifted to remote work.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021</div>
+                        <h3>Series A Funding</h3>
+                        <p>Secured $15M in funding to accelerate product development and team growth.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022</div>
+                        <h3>Global Expansion</h3>
+                        <p>Opened offices in London and Singapore to better serve our international customers.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <h3>Today</h3>
+                        <p>Serving over 10,000 teams worldwide with a suite of integrated collaboration tools.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>10,000+</h3>
+                    <p>Teams Using Horizon</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3>120+</h3>
+                    <p>Countries Represented</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3>100+</h3>
+                    <p>Team Members</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3>$20M</h3>
+                    <p>Total Funding</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Join Us on Our Mission</h2>
+            <p>Experience how Horizon can transform the way your team works together</p>
+            <div class="cta-buttons">
+                <button class="primary-button" id="ctaGetStarted">Get Started</button>
+                <button class="secondary-button" id="ctaJoinTeam">Join Our Team</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo" id="footer-logo">Horizon</div>
+                <p>Empowering businesses with innovative solutions to streamline workflows and boost productivity.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="LinkedIn">🔗</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Product</h3>
+                <ul>
+                    <li><a id="footer-features">Features</a></li>
+                    <li><a id="footer-pricing">Pricing</a></li>
+                    <li><a id="footer-integrations">Integrations</a></li>
+                    <li><a id="footer-updates">Updates</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a id="footer-about">About Us</a></li>
+                    <li><a id="footer-careers">Careers</a></li>
+                    <li><a id="footer-blog">Blog</a></li>
+                    <li><a id="footer-contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a id="footer-documentation">Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Horizon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation handling
+        function navigateTo(page, params) {
+            console.log(`Navigating to: ${page}`);
+            if (params) {
+                console.log('With params:', params);
+            }
+            // In a real implementation, this would navigate to the page
+        }
+        
+        // Logo navigation
+        document.getElementById('logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        document.getElementById('footer-logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        // Nav links
+        document.getElementById('nav-features').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/features');
+        });
+        
+        document.getElementById('nav-pricing').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('nav-integrations').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('nav-contact').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/contact');
+        });
+        
+        // CTA buttons
+        document.getElementById('navGetStarted').addEventListener('click', function() {
+            navigateTo('/signup');
+        });
+        
+        document.getElementById('ctaGetStarted').addEventListener('click', function() {
+            navigateTo('/signup');
+        });
+        
+        document.getElementById('ctaJoinTeam').addEventListener('click', function() {
+            navigateTo('/careers');
+        });
+        
+        // Footer links
+        document.getElementById('footer-features').addEventListener('click', function() {
+            navigateTo('/features');
+        });
+        
+        document.getElementById('footer-pricing').addEventListener('click', function() {
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('footer-integrations').addEventListener('click', function() {
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('footer-updates').addEventListener('click', function() {
+            navigateTo('/updates');
+        });
+        
+        document.getElementById('footer-about').addEventListener('click', function() {
+            navigateTo('/about');
+        });
+        
+        document.getElementById('footer-careers').addEventListener('click', function() {
+            navigateTo('/careers');
+        });
+        
+        document.getElementById('footer-blog').addEventListener('click', function() {
+            navigateTo('/blog');
+        });
+        
+        document.getElementById('footer-contact').addEventListener('click', function() {
+            navigateTo('/contact');
+        });
+        
+        document.getElementById('footer-documentation').addEventListener('click', function() {
+            navigateTo('/documentation');
+        });
+        
+        document.getElementById('footer-help').addEventListener('click', function() {
+            navigateTo('/help');
+        });
+        
+        document.getElementById('footer-community').addEventListener('click', function() {
+            navigateTo('/community');
+        });
+        
+        document.getElementById('footer-webinars').addEventListener('click', function() {
+            navigateTo('/webinars');
+        });
+        
+        // Animate stats on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const statItems = document.querySelectorAll('.stat-item h3');
+            const statsSection = document.querySelector('.stats-section');
+            
+            let animated = false;
+            
+            function animateStats() {
+                if (animated) return;
+                
+                const sectionTop = statsSection.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    statItems.forEach(stat => {
+                        const targetValue = parseInt(stat.textContent.replace(/,|\+/g, ''));
+                        let currentValue = 0;
+                        const duration = 2000; // 2 seconds
+                        const increment = targetValue / (duration / 16); // 60fps
+                        
+                        function updateValue() {
+                            currentValue += increment;
+                            if (currentValue < targetValue) {
+                                stat.textContent = Math.round(currentValue).toLocaleString() + (stat.textContent.includes('+') ? '+' : '');
+                                requestAnimationFrame(updateValue);
+                            } else {
+                                stat.textContent = targetValue.toLocaleString() + (stat.textContent.includes('+') ? '+' : '');
+                            }
+                        }
+                        
+                        updateValue();
+                    });
+                    
+                    animated = true;
+                }
+            }
+            
+            window.addEventListener('scroll', animateStats);
+            animateStats(); // Check on load
+        });
+    </script>
+</body>
+</html>

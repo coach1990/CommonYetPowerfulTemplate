@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrations - Horizon</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            line-height: 1.6;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4361ee;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        .cta-button {
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a56d4;
+        }
+        
+        /* Page header */
+        .page-header {
+            background-color: #4361ee;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Search and filter section */
+        .search-section {
+            padding: 2rem;
+            background-color: white;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .search-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            border-color: #4361ee;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 1rem;
+            min-width: 150px;
+            cursor: pointer;
+        }
+        
+        .filter-select:focus {
+            border-color: #4361ee;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+        
+        /* Integrations section */
+        .integrations-section {
+            padding: 4rem 2rem;
+        }
+        
+        .integrations-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: #212529;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-title p {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+        
+        .integrations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .integration-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .integration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .integration-logo {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .integration-logo img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+        }
+        
+        .integration-content {
+            padding: 1.5rem;
+        }
+        
+        .integration-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #212529;
+        }
+        
+        .integration-content p {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .integration-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tag {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .integration-button {
+            display: inline-block;
+            width: 100%;
+            padding: 0.75rem 0;
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .integration-button:hover {
+            background-color: #3a56d4;
+        }
+        
+        /* Categories section */
+        .categories-section {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+        
+        .categories-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .category-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #4361ee;
+        }
+        
+        .category-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #212529;
+        }
+        
+        .category-card p {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .category-count {
+            display: inline-block;
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* CTA section */
+        .cta-section {
+            background-color: #4361ee;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .white-button {
+            background-color: white;
+            color: #4361ee;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .white-button:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+        
+        .outline-white-button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .outline-white-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #212529;
+            color: #f8f9fa;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .footer-about p {
+            color: #adb5bd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: #adb5bd;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: #adb5bd;
+            padding-top: 3rem;
+            border-top: 1px solid #343a40;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .search-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-options {
+                justify-content: space-between;
+            }
+            
+            .filter-select {
+                flex: 1;
+                min-width: 120px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" id="logo">Horizon</div>
+            <div class="nav-links">
+                <a href="#" id="nav-features">Features</a>
+                <a href="#" id="nav-pricing">Pricing</a>
+                <a href="#" id="nav-integrations">Integrations</a>
+                <a href="#" id="nav-contact">Contact</a>
+            </div>
+            <button class="cta-button" id="navGetStarted">Get Started</button>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Connect Your Favorite Tools</h1>
+        <p>Explore our extensive library of integrations to enhance your workflow and productivity</p>
+    </section>
+
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search integrations..." id="searchInput">
+            </div>
+            <div class="filter-options">
+                <select class="filter-select" id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="productivity">Productivity</option>
+                    <option value="communication">Communication</option>
+                    <option value="analytics">Analytics</option>
+                    <option value="crm">CRM</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="development">Development</option>
+                </select>
+                <select class="filter-select" id="sortFilter">
+                    <option value="popular">Most Popular</option>
+                    <option value="newest">Newest</option>
+                    <option value="alphabetical">A-Z</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="integrations-section">
+        <div class="integrations-container">
+            <div class="section-title">
+                <h2>Popular Integrations</h2>
+                <p>Our most used integrations that help teams work more efficiently</p>
+            </div>
+            
+            <div class="integrations-grid" id="integrationsGrid">
+                <!-- Integration cards will be dynamically populated -->
+            </div>
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <div class="categories-container">
+            <div class="section-title">
+                <h2>Browse by Category</h2>
+                <p>Find the perfect integration for your specific needs</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card" data-category="productivity">
+                    <div class="category-icon">⚡</div>
+                    <h3>Productivity</h3>
+                    <p>Tools to help your team work faster and smarter</p>
+                    <span class="category-count">24 integrations</span>
+                </div>
+                
+                <div class="category-card" data-category="communication">
+                    <div class="category-icon">💬</div>
+                    <h3>Communication</h3>
+                    <p>Connect with your team and clients seamlessly</p>
+                    <span class="category-count">18 integrations</span>
+                </div>
+                
+                <div class="category-card" data-category="analytics">
+                    <div class="category-icon">📊</div>
+                    <h3>Analytics</h3>
+                    <p>Gain insights and make data-driven decisions</p>
+                    <span class="category-count">15 integrations</span>
+                </div>
+                
+                <div class="category-card" data-category="crm">
+                    <div class="category-icon">👥</div>
+                    <h3>CRM</h3>
+                    <p>Manage your customer relationships effectively</p>
+                    <span class="category-count">12 integrations</span>
+                </div>
+                
+                <div class="category-card" data-category="marketing">
+                    <div class="category-icon">📣</div>
+                    <h3>Marketing</h3>
+                    <p>Promote your brand and reach your audience</p>
+                    <span class="category-count">20 integrations</span>
+                </div>
+                
+                <div class="category-card" data-category="development">
+                    <div class="category-icon">👨‍💻</div>
+                    <h3>Development</h3>
+                    <p>Tools for developers to build and deploy faster</p>
+                    <span class="category-count">16 integrations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Can't find what you need?</h2>
+            <p>We're constantly adding new integrations. Let us know what you're looking for.</p>
+            <div class="cta-buttons">
+                <button class="white-button" id="requestIntegration">Request Integration</button>
+                <button class="outline-white-button" id="contactSupport">Contact Support</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo" id="footer-logo">Horizon</div>
+                <p>Empowering businesses with innovative solutions to streamline workflows and boost productivity.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="LinkedIn">🔗</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Product</h3>
+                <ul>
+                    <li><a id="footer-features">Features</a></li>
+                    <li><a id="footer-pricing">Pricing</a></li>
+                    <li><a id="footer-integrations">Integrations</a></li>
+                    <li><a id="footer-updates">Updates</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a id="footer-about">About Us</a></li>
+                    <li><a id="footer-careers">Careers</a></li>
+                    <li><a id="footer-blog">Blog</a></li>
+                    <li><a id="footer-contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a id="footer-documentation">Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Horizon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample integration data
+        const integrations = [
+            {
+                id: 1,
+                name: "Slack",
+                description: "Connect your team communications with your workflow",
+                logo: "https://cdn.iconscout.com/icon/free/png-256/slack-2752072-2284889.png",
+                category: "communication",
+                tags: ["team chat", "notifications", "collaboration"]
+            },
+            {
+                id: 2,
+                name: "Google Drive",
+                description: "Access and manage your files directly from our platform",
+                logo: "https://cdn.iconscout.com/icon/free/png-256/google-drive-2923656-2416658.png",
+                category: "productivity",
+                tags: ["file storage", "documents", "collaboration"]
+            },
+            {
+                id: 3,
+                name: "Trello",
+                description: "Manage your projects with visual boards and cards",
+                logo: "https://cdn.iconscout.com/icon/free/png-256/trello-2752053-2284870.png",
+                category: "productivity",
+                tags: ["project management", "kanban", "tasks"]
+            },
+            {
+                id: 4,
+                name: "Salesforce",
+                description: "Sync customer data between our platform and Salesforce",
+                logo: "https://cdn.iconscout.com/icon/free/png-256/salesforce-2752089-2284906.png",
+                category: "crm",
+                tags: ["customer management", "sales", "leads"]
+            },
+            {
+                id: 5,
+                name: "Mailchimp",
+                description: "Create and manage email campaigns from one place",
+                logo: "https://cdn.iconscout.com/icon/free/png-256/mailchimp-2752116-2284933.png",
+                category: "marketing",
+                tags: ["email marketing", "automation", "campaigns"]
+            },
+            {
+                id: 6,
+                name: "GitHub",
+                description: "Connect your code repositories and track development",
+                logo: "https://cdn.iconscout.com/icon/free/png-256/github-2752069-2284886.png",
+                category: "development",
+                tags: ["code", "version control", "repositories"]
+            },
+            {
+                id: 7,
+                name: "Zoom",
+                description: "Schedule and join video meetings directly from our platform",
+                logo: "https://cdn.iconscout.com/icon/free/png-256/zoom-2752193-2285010.png",
+                category: "communication",
+                tags: ["video conferencing", "meetings", "webinars"]
+            },
+            {
+                id: 8,
+                name: "Google Analytics",
+                description: "Track website performance and user behavior",
+                logo: "https://cdn.iconscout.com/icon/free/png-256/google-analytics-2752049-2284866.png",
+                category: "analytics",
+                tags: ["web analytics", "reporting", "insights"]
+            },
+            {
+                id: 9,
+                name: "Asana",
+                description: "Manage team tasks and projects with ease",
+                logo: "https://cdn.iconscout.com/icon/free/png-256/asana-226537.png",
+                category: "productivity",
+                tags: ["project management", "tasks", "collaboration"]
+            }
+        ];
+        
+        // Function to create integration cards
+        function createIntegrationCard(integration) {
+            const card = document.createElement('div');
+            card.className = 'integration-card';
+            card.setAttribute('data-category', integration.category);
+            
+            const tagsHTML = integration.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+            
+            card.innerHTML = `
+                <div class="integration-logo">
+                    <img src="${integration.logo}" alt="${integration.name} logo">
+                </div>
+                <div class="integration-content">
+                    <h3>${integration.name}</h3>
+                    <p>${integration.description}</p>
+                    <div class="integration-tags">
+                        ${tagsHTML}
+                    </div>
+                    <button class="integration-button" data-id="${integration.id}">Connect</button>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // Populate integrations grid
+        function populateIntegrations(filteredIntegrations = integrations) {
+            const grid = document.getElementById('integrationsGrid');
+            grid.innerHTML = '';
+            
+            if (filteredIntegrations.length === 0) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #6c757d;">No integrations found matching your criteria.</p>';
+                return;
+            }
+            
+            filteredIntegrations.forEach(integration => {
+                const card = createIntegrationCard(integration);
+                grid.appendChild(card);
+                
+                // Add event listener to connect button
+                const connectButton = card.querySelector('.integration-button');
+                connectButton.addEventListener('click', function() {
+                    const integrationId = this.getAttribute('data-id');
+                    connectIntegration(integrationId);
+                });
+            });
+        }
+        
+        // Function to handle integration connection
+        function connectIntegration(id) {
+            const integration = integrations.find(item => item.id == id);
+            console.log(`Connecting to ${integration.name} integration...`);
+            alert(`You are now connecting to ${integration.name}. In a real app, this would open an authentication flow.`);
+        }
+        
+        // Filter integrations based on search and category
+        function filterIntegrations() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const sortFilter = document.getElementById('sortFilter').value;
+            
+            let filtered = integrations.filter(integration => {
+                const matchesSearch = integration.name.toLowerCase().includes(searchTerm) || 
+                                     integration.description.toLowerCase().includes(searchTerm) ||
+                                     integration.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                
+                const matchesCategory = categoryFilter === '' || integration.category === categoryFilter;
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            // Sort the filtered integrations
+            if (sortFilter === 'alphabetical') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortFilter === 'newest') {
+                // In a real app, you would sort by date added
+                // For this demo, we'll just reverse the order
+                filtered.reverse();
+            }
+            // 'popular' is the default order in our sample data
+            
+            populateIntegrations(filtered);
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Populate initial integrations
+            populateIntegrations();
+            
+            // Set up event listeners for filters
+            document.getElementById('searchInput').addEventListener('input', filterIntegrations);
+            document.getElementById('categoryFilter').addEventListener('change', filterIntegrations);
+            document.getElementById('sortFilter').addEventListener('change', filterIntegrations);
+            
+            // Category card click handlers
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    document.getElementById('categoryFilter').value = category;
+                    filterIntegrations();
+                    
+                    // Scroll to integrations section
+                    document.querySelector('.integrations-section').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // CTA button handlers
+            document.getElementById('requestIntegration').addEventListener('click', function() {
+                navigateTo('/contact', { subject: 'Integration Request' });
+            });
+            
+            document.getElementById('contactSupport').addEventListener('click', function() {
+                navigateTo('/help');
+            });
+        });
+        
+        // Navigation handling
+        function navigateTo(page, params) {
+            console.log(`Navigating to: ${page}`);
+            if (params) {
+                console.log('With params:', params);
+            }
+            // In a real implementation, this would navigate to the page
+        }
+        
+        // Logo navigation
+        document.getElementById('logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        document.getElementById('footer-logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        // Nav links
+        document.getElementById('nav-features').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/features');
+        });
+        
+        document.getElementById('nav-pricing').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('nav-integrations').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('nav-contact').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/contact');
+        });
+        
+        // CTA button
+        document.getElementById('navGetStarted').addEventListener('click', function() {
+            navigateTo('/signup');
+        });
+        
+        // Footer links
+        document.getElementById('footer-features').addEventListener('click', function() {
+            navigateTo('/features');
+        });
+        
+        document.getElementById('footer-pricing').addEventListener('click', function() {
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('footer-integrations').addEventListener('click', function() {
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('footer-updates').addEventListener('click', function() {
+            navigateTo('/updates');
+        });
+        
+        document.getElementById('footer-about').addEventListener('click', function() {
+            navigateTo('/about');
+        });
+        
+        document.getElementById('footer-careers').addEventListener('click', function() {
+            navigateTo('/careers');
+        });
+        
+        document.getElementById('footer-blog').addEventListener('click', function() {
+            navigateTo('/blog');
+        });
+        
+        document.getElementById('footer-contact').addEventListener('click', function() {
+            navigateTo('/contact');
+        });
+        
+        document.getElementById('footer-documentation').addEventListener('click', function() {
+            navigateTo('/documentation');
+        });
+        
+        document.getElementById('footer-help').addEventListener('click', function() {
+            navigateTo('/help');
+        });
+        
+        document.getElementById('footer-community').addEventListener('click', function() {
+            navigateTo('/community');
+        });
+        
+        document.getElementById('footer-webinars').addEventListener('click', function() {
+            navigateTo('/webinars');
+        });
+    </script>
+</body>
+</html>

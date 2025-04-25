@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Horizon</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            line-height: 1.6;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4361ee;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        .cta-button {
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a56d4;
+        }
+        
+        /* Page header */
+        .page-header {
+            background-color: #4361ee;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Contact section */
+        .contact-section {
+            padding: 5rem 2rem;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        /* Contact form */
+        .contact-form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #212529;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #495057;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #4361ee;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-button {
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .form-button:hover {
+            background-color: #3a56d4;
+            transform: translateY(-2px);
+        }
+        
+        /* Contact info */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .info-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #212529;
+        }
+        
+        .info-text {
+            color: #6c757d;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-methods {
+            margin-bottom: 3rem;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .method-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #4361ee;
+        }
+        
+        .method-details h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: #212529;
+        }
+        
+        .method-details p {
+            color: #6c757d;
+        }
+        
+        .method-details a {
+            color: #4361ee;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .method-details a:hover {
+            color: #3a56d4;
+            text-decoration: underline;
+        }
+        
+        .social-connect h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #212529;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+            color: #4361ee;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: #4361ee;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Office locations */
+        .office-locations {
+            padding: 5rem 2rem;
+            background-color: white;
+        }
+        
+        .locations-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #212529;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .location-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .location-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .location-details {
+            padding: 1.5rem;
+        }
+        
+        .location-details h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #212529;
+        }
+        
+        .location-details p {
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        
+        .location-details a {
+            color: #4361ee;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        
+        .location-details a:hover {
+            color: #3a56d4;
+        }
+        
+        .location-details a span {
+            margin-left: 0.5rem;
+        }
+        
+        /* FAQ section */
+        .faq-section {
+            padding: 5rem 2rem;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #212529;
+        }
+        
+        .faq-question:hover {
+            background-color: #e9ecef;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #212529;
+            color: #f8f9fa;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .footer-about p {
+            color: #adb5bd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: #adb5bd;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: #adb5bd;
+            padding-top: 3rem;
+            border-top: 1px solid #343a40;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" id="logo">Horizon</div>
+            <div class="nav-links">
+                <a href="#" id="nav-features">Features</a>
+                <a href="#" id="nav-pricing">Pricing</a>
+                <a href="#" id="nav-integrations">Integrations</a>
+                <a href="#" id="nav-contact">Contact</a>
+            </div>
+            <button class="cta-button" id="navGetStarted">Get Started</button>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Get in Touch</h1>
+        <p>Have questions or need help? We're here for you. Reach out to our team and we'll get back to you as soon as possible.</p>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-form">
+                <h2 class="form-title">Send us a message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <select id="subject" class="form-control" required>
+                            <option value="" disabled selected>Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="sales">Sales Question</option>
+                            <option value="billing">Billing Issue</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">Your Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-button">Send Message</button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <div>
+                    <h2 class="info-title">Contact Information</h2>
+                    <p class="info-text">Our team is ready to assist you with any questions or concerns. Choose the method that works best for you.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">📧</div>
+                            <div class="method-details">
+                                <h3>Email Us</h3>
+                                <p>For general inquiries:</p>
+                                <a href="mailto:info@horizonapp.com">info@horizonapp.com</a>
+                                <p>For support:</p>
+                                <a href="mailto:support@horizonapp.com">support@horizonapp.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">📞</div>
+                            <div class="method-details">
+                                <h3>Call Us</h3>
+                                <p>Monday to Friday, 9am - 6pm EST</p>
+                                <a href="tel:+18005551234">+1 (800) 555-1234</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">💬</div>
+                            <div class="method-details">
+                                <h3>Live Chat</h3>
+                                <p>Chat with our support team in real-time</p>
+                                <a href="#" id="startChat">Start a conversation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-connect">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn">🔗</a>
+                        <a href="#" class="social-icon" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="office-locations">
+        <div class="locations-container">
+            <div class="section-title">
+                <h2>Our Offices</h2>
+                <p>Visit us at one of our global locations</p>
+            </div>
+            
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="location-details">
+                        <h3>New York</h3>
+                        <p>123 Tech Plaza, Suite 500<br>New York, NY 10001</p>
+                        <a href="#" id="nyDirections">Get directions <span>→</span></a>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="location-details">
+                        <h3>San Francisco</h3>
+                        <p>456 Innovation Drive<br>San Francisco, CA 94105</p>
+                        <a href="#" id="sfDirections">Get directions <span>→</span></a>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="location-details">
+                        <h3>London</h3>
+                        <p>789 Tech Circle<br>London, UK EC2A 4NE</p>
+                        <a href="#" id="londonDirections">Get directions <span>→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find quick answers to common questions</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What are your support hours?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our support team is available Monday through Friday from 9am to 6pm Eastern Time. For urgent issues outside of these hours, premium support plans offer 24/7 assistance.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How quickly can I expect a response?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We aim to respond to all inquiries within 24 hours. For technical support tickets, our response times vary by plan level: Standard (48 hours), Professional (24 hours), and Enterprise (4 hours).</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer phone support?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, phone support is available for Professional and Enterprise plan customers. Standard plan customers can access email and chat support.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can I request a product demo?</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>You can request a personalized product demo by filling out the contact form on this page and selecting "Sales Question" as the subject. One of our product specialists will reach out to schedule a convenient time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo" id="footer-logo">Horizon</div>
+                <p>Empowering businesses with innovative solutions to streamline workflows and boost productivity.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="LinkedIn">🔗</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Product</h3>
+                <ul>
+                    <li><a id="footer-features">Features</a></li>
+                    <li><a id="footer-pricing">Pricing</a></li>
+                    <li><a id="footer-integrations">Integrations</a></li>
+                    <li><a id="footer-updates">Updates</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a id="footer-about">About Us</a></li>
+                    <li><a id="footer-careers">Careers</a></li>
+                    <li><a id="footer-blog">Blog</a></li>
+                    <li><a id="footer-contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a id="footer-documentation">Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Horizon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real app, you would send this data to your server
+            console.log('Form submitted:', { name, email, subject, message });
+            
+            // Show success message
+            alert('Thank you for your message! We will get back to you soon.');
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // FAQ accordion functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('.toggle-icon');
+                
+                // Toggle active class
+                answer.classList.toggle('active');
+                
+                // Change icon
+                if (answer.classList.contains('active')) {
+                    icon.textContent = '-';
+                } else {
+                    icon.textContent = '+';
+                }
+            });
+        });
+        
+        // Live chat button
+        document.getElementById('startChat').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Live chat feature would open here. In a real implementation, this would connect to your chat support system.');
+        });
+        
+        // Office directions
+        document.getElementById('nyDirections').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('https://maps.google.com/?q=New+York+NY+10001', '_blank');
+        });
+        
+        document.getElementById('sfDirections').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('https://maps.google.com/?q=San+Francisco+CA+94105', '_blank');
+        });
+        
+        document.getElementById('londonDirections').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('https://maps.google.com/?q=London+UK+EC2A+4NE', '_blank');
+        });
+        
+        // Check for subject parameter in URL
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simple function to get URL parameters
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
+            
+            // Check if subject parameter exists
+            const subjectParam = getUrlParameter('subject');
+            if (subjectParam) {
+                const subjectSelect = document.getElementById('subject');
+                
+                // Find the option that matches the subject parameter
+                for (let i = 0; i < subjectSelect.options.length; i++) {
+                    if (subjectSelect.options[i].value === subjectParam.toLowerCase()) {
+                        subjectSelect.selectedIndex = i;
+                        break;
+                    }
+                }
+                
+                // If no match found, add a new option
+                if (subjectSelect.selectedIndex === 0) {
+                    const newOption = document.createElement('option');
+                    newOption.value = subjectParam.toLowerCase();
+                    newOption.text = subjectParam;
+                    subjectSelect.add(newOption);
+                    subjectSelect.value = subjectParam.toLowerCase();
+                }
+                
+                // Scroll to the form
+                document.querySelector('.contact-form').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        
+        // Navigation handling
+        function navigateTo(page, params) {
+            console.log(`Navigating to: ${page}`);
+            if (params) {
+                console.log('With params:', params);
+            }
+            // In a real implementation, this would navigate to the page
+        }
+        
+        // Logo navigation
+        document.getElementById('logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        document.getElementById('footer-logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        // Nav links
+        document.getElementById('nav-features').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/features');
+        });
+        
+        document.getElementById('nav-pricing').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('nav-integrations').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('nav-contact').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/contact');
+        });
+        
+        // CTA button
+        document.getElementById('navGetStarted').addEventListener('click', function() {
+            navigateTo('/signup');
+        });
+        
+        // Footer links
+        document.getElementById('footer-features').addEventListener('click', function() {
+            navigateTo('/features');
+        });
+        
+        document.getElementById('footer-pricing').addEventListener('click', function() {
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('footer-integrations').addEventListener('click', function() {
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('footer-updates').addEventListener('click', function() {
+            navigateTo('/updates');
+        });
+        
+        document.getElementById('footer-about').addEventListener('click', function() {
+            navigateTo('/about');
+        });
+        
+        document.getElementById('footer-careers').addEventListener('click', function() {
+            navigateTo('/careers');
+        });
+        
+        document.getElementById('footer-blog').addEventListener('click', function() {
+            navigateTo('/blog');
+        });
+        
+        document.getElementById('footer-contact').addEventListener('click', function() {
+            navigateTo('/contact');
+        });
+        
+        document.getElementById('footer-documentation').addEventListener('click', function() {
+            navigateTo('/documentation');
+        });
+        
+        document.getElementById('footer-help').addEventListener('click', function() {
+            navigateTo('/help');
+        });
+        
+        document.getElementById('footer-community').addEventListener('click', function() {
+            navigateTo('/community');
+        });
+        
+        document.getElementById('footer-webinars').addEventListener('click', function() {
+            navigateTo('/webinars');
+        });
+    </script>
+</body>
+</html>

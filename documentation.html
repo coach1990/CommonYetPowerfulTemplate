@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Horizon</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            line-height: 1.6;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4361ee;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        .cta-button {
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a56d4;
+        }
+        
+        /* Documentation layout */
+        .docs-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 70px);
+        }
+        
+        /* Sidebar */
+        .docs-sidebar {
+            width: 280px;
+            background-color: #ffffff;
+            border-right: 1px solid #e9ecef;
+            padding: 2rem 0;
+            position: sticky;
+            top: 70px;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+        }
+        
+        .sidebar-search {
+            padding: 0 1.5rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            border-color: #4361ee;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        
+        .sidebar-nav {
+            padding: 0 1.5rem;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .sidebar-section-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6c757d;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .sidebar-nav-list {
+            list-style: none;
+        }
+        
+        .sidebar-nav-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-nav-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: #495057;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .sidebar-nav-link:hover {
+            color: #4361ee;
+        }
+        
+        .sidebar-nav-link.active {
+            color: #4361ee;
+            font-weight: 600;
+        }
+        
+        .sidebar-subnav {
+            list-style: none;
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-left: 1px solid #e9ecef;
+            padding-left: 1rem;
+        }
+        
+        .sidebar-subnav-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-subnav-link {
+            display: block;
+            padding: 0.25rem 0;
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .sidebar-subnav-link:hover {
+            color: #4361ee;
+        }
+        
+        .sidebar-subnav-link.active {
+            color: #4361ee;
+            font-weight: 600;
+        }
+        
+        /* Main content */
+        .docs-content {
+            flex: 1;
+            padding: 3rem 2rem;
+            max-width: 900px;
+        }
+        
+        .docs-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .docs-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #212529;
+        }
+        
+        .docs-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+        }
+        
+        .docs-section {
+            margin-bottom: 3rem;
+        }
+        
+        .docs-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #212529;
+            padding-top: 1rem;
+        }
+        
+        .docs-section h3 {
+            font-size: 1.35rem;
+            margin: 1.5rem 0 1rem;
+            color: #343a40;
+        }
+        
+        .docs-section p {
+            margin-bottom: 1rem;
+            color: #495057;
+        }
+        
+        .docs-section ul, .docs-section ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .docs-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .docs-section code {
+            background-color: #f1f3f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9em;
+            color: #e83e8c;
+        }
+        
+        .code-block {
+            background-color: #212529;
+            color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+        
+        .code-block code {
+            display: block;
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .note {
+            background-color: #e9ecef;
+            border-left: 4px solid #4361ee;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .note p {
+            margin-bottom: 0;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .warning p {
+            margin-bottom: 0;
+            color: #856404;
+        }
+        
+        .docs-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .docs-nav-link {
+            display: flex;
+            align-items: center;
+            color: #4361ee;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .docs-nav-link:hover {
+            color: #3a56d4;
+        }
+        
+        .docs-nav-link.prev {
+            margin-right: auto;
+        }
+        
+        .docs-nav-link.next {
+            margin-left: auto;
+        }
+        
+        .docs-nav-link span {
+            margin: 0 0.5rem;
+        }
+        
+        /* Table of contents */
+        .docs-toc {
+            width: 220px;
+            padding: 2rem 1.5rem;
+            position: sticky;
+            top: 70px;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+        }
+        
+        .toc-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #212529;
+        }
+        
+        .toc-list {
+            list-style: none;
+        }
+        
+        .toc-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.25rem 0;
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .toc-link:hover {
+            color: #4361ee;
+        }
+        
+        .toc-link.active {
+            color: #4361ee;
+            font-weight: 600;
+        }
+        
+        .toc-sublist {
+            list-style: none;
+            margin-left: 1rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #212529;
+            color: #f8f9fa;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .footer-about p {
+            color: #adb5bd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: #adb5bd;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: #adb5bd;
+            padding-top: 3rem;
+            border-top: 1px solid #343a40;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 1200px) {
+            .docs-toc {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .docs-container {
+                flex-direction: column;
+            }
+            
+            .docs-sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid #e9ecef;
+                padding: 1.5rem 0;
+            }
+            
+            .docs-content {
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .docs-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" id="logo">Horizon</div>
+            <div class="nav-links">
+                <a href="#" id="nav-features">Features</a>
+                <a href="#" id="nav-pricing">Pricing</a>
+                <a href="#" id="nav-integrations">Integrations</a>
+                <a href="#" id="nav-contact">Contact</a>
+            </div>
+            <button class="cta-button" id="navGetStarted">Get Started</button>
+        </nav>
+    </header>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="sidebar-search">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search documentation..." id="sidebarSearch">
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-section-title">Getting Started</h3>
+                    <ul class="sidebar-nav-list">
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link active" id="introduction-link">Introduction</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="quickstart-link">Quick Start Guide</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="installation-link">Installation</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-section-title">Core Concepts</h3>
+                    <ul class="sidebar-nav-list">
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="projects-link">Projects</a>
+                            <ul class="sidebar-subnav">
+                                <li class="sidebar-subnav-item">
+                                    <a class="sidebar-subnav-link" id="creating-projects-link">Creating Projects</a>
+                                </li>
+                                <li class="sidebar-subnav-item">
+                                    <a class="sidebar-subnav-link" id="managing-projects-link">Managing Projects</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="tasks-link">Tasks</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="teams-link">Teams</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-section-title">Features</h3>
+                    <ul class="sidebar-nav-list">
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="dashboard-link">Dashboard</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="calendar-link">Calendar</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="messaging-link">Messaging</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="files-link">File Management</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-section-title">API Reference</h3>
+                    <ul class="sidebar-nav-list">
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="api-overview-link">API Overview</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="authentication-link">Authentication</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-nav-link" id="endpoints-link">Endpoints</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        
+        <main class="docs-content">
+            <div class="docs-header">
+                <h1>Introduction to Horizon</h1>
+                <p>Welcome to the Horizon documentation. Learn how to use our platform to streamline your team's workflow and boost productivity.</p>
+            </div>
+            
+            <div class="docs-section" id="what-is-horizon">
+                <h2>What is Horizon?</h2>
+                <p>Horizon is a comprehensive collaboration platform designed to help teams work together more effectively, regardless of their location. Our platform combines project management, communication, file sharing, and more into a single, intuitive interface.</p>
+                <p>Whether you're a small startup or a large enterprise, Horizon provides the tools you need to organize your work, communicate with your team, and track progress toward your goals.</p>
+            </div>
+            
+            <div class="docs-section" id="key-features">
+                <h2>Key Features</h2>
+                <p>Horizon offers a wide range of features to support your team's workflow:</p>
+                <ul>
+                    <li><strong>Project Management:</strong> Create, organize, and track projects with customizable workflows.</li>
+                    <li><strong>Task Tracking:</strong> Assign tasks, set deadlines, and monitor progress in real-time.</li>
+                    <li><strong>Team Collaboration:</strong> Communicate with your team through integrated messaging and comments.</li>
+                    <li><strong>File Sharing:</strong> Store, share, and collaborate on files within the platform.</li>
+                    <li><strong>Calendar:</strong> Schedule meetings and deadlines with a shared team calendar.</li>
+                    <li><strong>Reporting:</strong> Generate insights with customizable reports and dashboards.</li>
+                    <li><strong>Integrations:</strong> Connect with your favorite tools through our extensive integration library.</li>
+                </ul>
+            </div>
+            
+            <div class="docs-section" id="getting-started">
+                <h2>Getting Started</h2>
+                <p>The best way to get started with Horizon is to sign up for a free account and explore the platform. Our intuitive interface makes it easy to start creating projects and inviting team members right away.</p>
+                <p>For a guided introduction, check out our <a id="quickstart-guide-link" style="color: #4361ee; text-decoration: none; cursor: pointer;">Quick Start Guide</a>, which will walk you through the basics of setting up your workspace and creating your first project.</p>
+                <div class="note">
+                    <p><strong>Note:</strong> Horizon offers a 14-day free trial with full access to all features. No credit card required to get started.</p>
+                </div>
+            </div>
+            
+            <div class="docs-section" id="system-requirements">
+                <h2>System Requirements</h2>
+                <p>Horizon is a cloud-based platform that works in any modern web browser. For the best experience, we recommend using the latest version of:</p>
+                <ul>
+                    <li>Google Chrome</li>
+                    <li>Mozilla Firefox</li>
+                    <li>Microsoft Edge</li>
+                    <li>Safari</li>
+                </ul>
+                <p>Mobile apps are available for iOS and Android devices, providing access to key features on the go.</p>
+            </div>
+            
+            <div class="docs-section" id="support">
+                <h2>Support</h2>
+                <p>If you need help with Horizon, there are several resources available:</p>
+                <ul>
+                    <li><strong>Help Center:</strong> Browse our <a id="help-center-link" style="color: #4361ee; text-decoration: none; cursor: pointer;">Help Center</a> for detailed guides and tutorials.</li>
+                    <li><strong>Community:</strong> Connect with other users in our <a id="community-link" style="color: #4361ee; text-decoration: none; cursor: pointer;">Community</a> forum.</li>
+                    <li><strong>Support Team:</strong> Contact our support team directly through the platform or by emailing <a href="mailto:support@horizonapp.com" style="color: #4361ee; text-decoration: none;">support@horizonapp.com</a>.</li>
+                </ul>
+                <p>Our support team is available Monday through Friday, 9am to 6pm EST. Enterprise customers have access to 24/7 priority support.</p>
+            </div>
+            
+            <div class="docs-nav">
+                <a class="docs-nav-link next" id="next-page-link">
+                    <span>Quick Start Guide</span> →
+                </a>
+            </div>
+        </main>
+        
+        <aside class="docs-toc">
+            <h3 class="toc-title">On This Page</h3>
+            <ul class="toc-list">
+                <li class="toc-item">
+                    <a class="toc-link active" href="#what-is-horizon">What is Horizon?</a>
+                </li>
+                <li class="toc-item">
+                    <a class="toc-link" href="#key-features">Key Features</a>
+                </li>
+                <li class="toc-item">
+                    <a class="toc-link" href="#getting-started">Getting Started</a>
+                </li>
+                <li class="toc-item">
+                    <a class="toc-link" href="#system-requirements">System Requirements</a>
+                </li>
+                <li class="toc-item">
+                    <a class="toc-link" href="#support">Support</a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo" id="footer-logo">Horizon</div>
+                <p>Empowering businesses with innovative solutions to streamline workflows and boost productivity.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="LinkedIn">🔗</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Product</h3>
+                <ul>
+                    <li><a id="footer-features">Features</a></li>
+                    <li><a id="footer-pricing">Pricing</a></li>
+                    <li><a id="footer-integrations">Integrations</a></li>
+                    <li><a id="footer-updates">Updates</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a id="footer-about">About Us</a></li>
+                    <li><a id="footer-careers">Careers</a></li>
+                    <li><a id="footer-blog">Blog</a></li>
+                    <li><a id="footer-contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a id="footer-documentation">Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Horizon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Table of contents highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            function highlightToc() {
+                const scrollPosition = window.scrollY;
+                
+                // Find all section elements
+                const sections = document.querySelectorAll('.docs-section');
+                
+                // Loop through sections to find the one currently in view
+                let currentSection = null;
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        currentSection = section.id;
+                    }
+                });
+                
+                // Update active state in TOC
+                if (currentSection) {
+                    tocLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentSection}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            }
+            
+            // Add click event to TOC links for smooth scrolling
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', highlightToc);
+            
+            // Initial highlight
+            highlightToc();
+        });
+        
+        // Sidebar search functionality
+        document.getElementById('sidebarSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const navItems = document.querySelectorAll('.sidebar-nav-link, .sidebar-subnav-link');
+            
+            navItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parent = item.closest('.sidebar-nav-item');
+                
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    if (parent) {
+                        parent.style.display = 'block';
+                    }
+                } else {
+                    if (item.classList.contains('sidebar-nav-link')) {
+                        // Check if any children match
+                        const subItems = item.nextElementSibling ? 
+                            item.nextElementSibling.querySelectorAll('.sidebar-subnav-link') : [];
+                        
+                        let hasMatch = false;
+                        subItems.forEach(subItem => {
+                            if (subItem.textContent.toLowerCase().includes(searchTerm)) {
+                                hasMatch = true;
+                            }
+                        });
+                        
+                        if (hasMatch) {
+                            item.style.display = 'block';
+                            if (parent) {
+                                parent.style.display = 'block';
+                            }
+                        } else {
+                            item.style.display = 'none';
+                            if (parent && !hasMatch) {
+                                parent.style.display = 'none';
+                            }
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Show/hide section titles based on whether they have visible items
+            const sections = document.querySelectorAll('.sidebar-section');
+            sections.forEach(section => {
+                const visibleItems = section.querySelectorAll('.sidebar-nav-item[style="display: block"]');
+                const sectionTitle = section.querySelector('.sidebar-section-title');
+                
+                if (visibleItems.length === 0 && searchTerm !== '') {
+                    sectionTitle.style.display = 'none';
+                } else {
+                    sectionTitle.style.display = 'block';
+                }
+            });
+        });
+        
+        // Navigation handling
+        function navigateTo(page, params) {
+            console.log(`Navigating to: ${page}`);
+            if (params) {
+                console.log('With params:', params);
+            }
+            // In a real implementation, this would navigate to the page
+        }
+        
+        // Sidebar navigation links
+        document.querySelectorAll('.sidebar-nav-link, .sidebar-subnav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                // Remove active class from all links
+                document.querySelectorAll('.sidebar-nav-link, .sidebar-subnav-link').forEach(l => {
+                    l.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // In a real app, this would load the corresponding content
+                console.log(`Loading content for: ${this.textContent}`);
+            });
+        });
+        
+        // In-content links
+        document.getElementById('quickstart-guide-link').addEventListener('click', function() {
+            navigateTo('/documentation/quickstart');
+        });
+        
+        document.getElementById('help-center-link').addEventListener('click', function() {
+            navigateTo('/help');
+        });
+        
+        document.getElementById('community-link').addEventListener('click', function() {
+            navigateTo('/community');
+        });
+        
+        document.getElementById('next-page-link').addEventListener('click', function() {
+            navigateTo('/documentation/quickstart');
+        });
+        
+        // Logo navigation
+        document.getElementById('logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        document.getElementById('footer-logo').addEventListener('click', function() {
+            navigateTo('/');
+        });
+        
+        // Nav links
+        document.getElementById('nav-features').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/features');
+        });
+        
+        document.getElementById('nav-pricing').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('nav-integrations').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('nav-contact').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('/contact');
+        });
+        
+        // CTA button
+        document.getElementById('navGetStarted').addEventListener('click', function() {
+            navigateTo('/signup');
+        });
+        
+        // Footer links
+        document.getElementById('footer-features').addEventListener('click', function() {
+            navigateTo('/features');
+        });
+        
+        document.getElementById('footer-pricing').addEventListener('click', function() {
+            navigateTo('/pricing');
+        });
+        
+        document.getElementById('footer-integrations').addEventListener('click', function() {
+            navigateTo('/integrations');
+        });
+        
+        document.getElementById('footer-updates').addEventListener('click', function() {
+            navigateTo('/updates');
+        });
+        
+        document.getElementById('footer-about').addEventListener('click', function() {
+            navigateTo('/about');
+        });
+        
+        document.getElementById('footer-careers').addEventListener('click', function() {
+            navigateTo('/careers');
+        });
+        
+        document.getElementById('footer-blog').addEventListener('click', function() {
+            navigateTo('/blog');
+        });
+        
+        document.getElementById('footer-contact').addEventListener('click', function() {
+            navigateTo('/contact');
+        });
+        
+        document.getElementById('footer-documentation').addEventListener('click', function() {
+            navigateTo('/documentation');
+        });
+        
+        document.getElementById('footer-help').addEventListener('click', function() {
+            navigateTo('/help');
+        });
+        
+        document.getElementById('footer-community').addEventListener('click', function() {
+            navigateTo('/community');
+        });
+        
+        document.getElementById('footer-webinars').addEventListener('click', function() {
+            navigateTo('/webinars');
+        });
+    </script>
+</body>
+</html>
