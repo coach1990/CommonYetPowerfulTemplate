@@ -689,19 +689,31 @@
         });
         
         // Function to handle navigation between pages
-        function navigateTo(url, params) {
-            // This is a placeholder for the actual navigation function
-            // In a real implementation, this would use the provided navigateTo function
-            console.log(`Navigating to: ${url}`);
-            
-            // If this were a multi-page app, we would use:
-            // window.navigateTo(url, params);
-            
-            // For demo purposes, we'll just log the navigation
-            if (params) {
-                console.log('With params:', params);
-            }
+        function navigateTo(page, params) {
+          // Remove leading slash if present for relative URLs
+          const cleanPage = page.startsWith('/') ? page.substring(1) : page;
+        
+          // Build the URL
+          let url = cleanPage;
+        
+          // Add .html extension if not already present
+          if (!url.endsWith('.html') && !url.includes('#')) {
+            url = url + '.html';
+          }
+        
+          // Add query parameters if provided
+          if (params) {
+            const queryString = Object.entries(params)
+              .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+              .join('&');
+            url = url + (url.includes('?') ? '&' : '?') + queryString;
+          }
+        
+          // Navigate to the URL
+          window.location.href = url;
         }
+
+        
     </script>
 </body>
 </html>
