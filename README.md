@@ -1,6 +1,7 @@
 **Horizon - Modern SaaS Landing Page Template**
 
 **Description**
+
 Horizon is a premium, fully-responsive web template designed for SaaS companies, startups, and digital businesses looking to establish a strong online presence. This comprehensive template includes everything you need to showcase your product, attract customers, and grow your business.
 Built with clean, modern design principles and optimized for performance, Horizon offers a complete website solution with multiple page templates that work seamlessly together. The template uses pure HTML, CSS, and JavaScript without any external dependencies, making it incredibly easy to customize and deploy.
 
