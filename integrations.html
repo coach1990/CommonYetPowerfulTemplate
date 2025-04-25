@@ -851,22 +851,34 @@
             
             // CTA button handlers
             document.getElementById('requestIntegration').addEventListener('click', function() {
-                navigateTo('/contact', { subject: 'Integration Request' });
+                navigateTo('/integrations', { subject: 'Integration Request' });
             });
             
             document.getElementById('contactSupport').addEventListener('click', function() {
-                navigateTo('/help');
+                navigateTo('/contact');
             });
         });
         
         // Navigation handling
         function navigateTo(page, params) {
-            console.log(`Navigating to: ${page}`);
-            if (params) {
-                console.log('With params:', params);
-            }
-            // In a real implementation, this would navigate to the page
-        }
+          // Remove leading slash if present for relative URLs
+          const cleanPage = page.startsWith('/') ? page.substring(1) : page;
+        
+          // Build the URL
+          let url = cleanPage;
+        
+          // Add .html extension if not already present
+          if (!url.endsWith('.html') && !url.includes('#')) {
+            url = url + '.html';
+          }
+        
+          // Add query parameters if provided
+          if (params) {
+            const queryString = Object.entries(params)
+              .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+              .join('&');
+            url = url + (url.includes('?') ? '&' : '?') + queryString;
+          }
         
         // Logo navigation
         document.getElementById('logo').addEventListener('click', function() {
@@ -880,7 +892,7 @@
         // Nav links
         document.getElementById('nav-features').addEventListener('click', function(e) {
             e.preventDefault();
-            navigateTo('/features');
+            navigateTo('/index');
         });
         
         document.getElementById('nav-pricing').addEventListener('click', function(e) {
@@ -900,12 +912,12 @@
         
         // CTA button
         document.getElementById('navGetStarted').addEventListener('click', function() {
-            navigateTo('/signup');
+            navigateTo('/contact');
         });
         
         // Footer links
         document.getElementById('footer-features').addEventListener('click', function() {
-            navigateTo('/features');
+            navigateTo('/index');
         });
         
         document.getElementById('footer-pricing').addEventListener('click', function() {
